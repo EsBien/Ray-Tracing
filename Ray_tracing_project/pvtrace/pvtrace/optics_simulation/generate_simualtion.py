@@ -26,17 +26,17 @@ world = Node(
 
 
 def generate_lenses(num_lenses):
-    lens = []
+    lenses = []
     for i in range(num_lenses):
-        len = Node(
+        lens = Node(
             name="sphere (glass)" + str(i + 1),
             geometry=Sphere(
                 radius=0.5,
                 material=Material(refractive_index=1.5),
                 isLen=True),
             parent=world, )
-        lens.append(len)
-    return lens
+        lenses.append(lens)
+    return lenses
 
 
 def generate_rays(n, y_location_wavelengh):

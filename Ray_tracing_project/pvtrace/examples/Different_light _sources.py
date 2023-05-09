@@ -73,35 +73,18 @@ while droplet_data:
             ball.geometry._x_Location += gPower(ball.geometry._startTime, frame)
         if ball.geometry._startTime >= frame:
             ball.location = (ball.geometry._x_Location, ball.geometry._y_Location, ball.geometry._z_Location)
-    lenses[0].geometry._color = 0
-    lenses[1].geometry._color = 0
-    lenses[2].geometry._color = 0
-    lenses[3].geometry._color = 0
-    lenses[4].geometry._color = 0
-    lenses[5].geometry._color = 0
-    lenses[0].geometry.set_collision = 0
-    lenses[1].geometry.set_collision = 0
-    lenses[2].geometry.set_collision = 0
-    lenses[3].geometry.set_collision = 0
-    lenses[4].geometry.set_collision = 0
-    lenses[5].geometry.set_collision = 0
+    for lens in lenses:
+        lens.geometry._color = 0
+        lens.geometry.set_collision = 0
+
     for ray in scene.emit(20):
         # ray.direction(0.08,-0.34,-0.94)
         history = photon_tracer.follow(scene, ray)
         path, events = zip(*history)
         viewer.add_ray_path(path)
-    if lenses[5].geometry.collision:
-        lenses[5].geometry._color = lenses[5].geometry._color / lenses[5].geometry.set_collision
-    if lenses[0].geometry.collision:
-        lenses[0].geometry._color = lenses[0].geometry._color / lenses[0].geometry.set_collision
-    if lenses[1].geometry.collision:
-        lenses[1].geometry._color = lenses[1].geometry._color / lenses[1].geometry.set_collision
-    if lenses[2].geometry.collision:
-        lenses[2].geometry._color = lenses[2].geometry._color / lenses[2].geometry.set_collision
-    if lenses[3].geometry.collision:
-        lenses[3].geometry._color = lenses[3].geometry._color / lenses[3].geometry.set_collision
-    if lenses[4].geometry.collision:
-        lenses[4].geometry._color = lenses[4].geometry._color / lenses[4].geometry.set_collision
+    for lens in lenses:
+        if lens.geometry.collision:
+            lens.geometry._color = lens.geometry._color / lens.geometry.set_collision
 
     csv_data += [
         {'len': 'lenses[0]', 'num_of_ray_hit': "" + str(lenses[0].geometry.collision), 'time': "" + str(frame),
