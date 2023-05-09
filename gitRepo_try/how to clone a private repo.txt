@@ -1,0 +1,8 @@
+how to clone a private repo?
+in the cammand line:
+
+git clone https://EsBien@github.com/EsBien/Ray-Tracing.git
+
+git clone https://Name_off_git_user@github.com/Name_off_git_user/Name_off_repo.git
+
+we cannot just clone a private repo because it wont give promission 

@@ -1,0 +1,44 @@
+[LED_ARRAY]
+size = 45
+wavelengh = 200
+start_location=1
+gap_between_led=-0.1
+
+[LED]
+x_location = 0
+y_location = 1
+z_location = -1
+[LEN]
+len1_xlocation=0
+len1_ylocation=0.5
+len1_zlocation=6
+len2_xlocation=0
+len2_ylocation=0.5
+len2_zlocation=6
+len3_xlocation=0
+len3_ylocation=0.5
+len3_zlocation=6
+len4_xlocation=0
+len4_ylocation=0.5
+len4_zlocation=6
+len5_xlocation=0
+len5_ylocation=0.5
+len5_zlocation=6
+len6_xlocation=0
+len6_ylocation=0.5
+len6_zlocation=6
+[WAVELENGH]
+wavelengh_0 = 700
+wavelengh_1 = 250
+wavelengh_2 = 600
+wavelengh_3 = 555
+wavelengh_4 = 600
+wavelengh_5 = 450
+wavelengh_6 = 500
+wavelengh_7 = 350
+
+[DROP]
+refractive_index=1.33
+
+
+
