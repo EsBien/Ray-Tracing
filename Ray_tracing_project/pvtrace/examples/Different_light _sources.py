@@ -1,4 +1,5 @@
-import matplotlib as plt
+
+import matplotlib.pyplot as plt
 from pvtrace.optics_simulation.generate_simualtion import *
 
 array_of_wavelengh = []
@@ -82,30 +83,17 @@ while droplet_data:
         history = photon_tracer.follow(scene, ray)
         path, events = zip(*history)
         viewer.add_ray_path(path)
+    index = 1
     for lens in lenses:
         if lens.geometry.collision:
             lens.geometry._color = lens.geometry._color / lens.geometry.set_collision
 
-    csv_data += [
-        {'len': 'lenses[0]', 'num_of_ray_hit': "" + str(lenses[0].geometry.collision), 'time': "" + str(frame),
-         "color": '' + str(lenses[0].geometry._color)},
-        {'len': 'lenses[1]', 'num_of_ray_hit': "" + str(lenses[1].geometry.collision), 'time': "" + str(frame),
-         "color": '' + str(lenses[1].geometry._color)},
-        {'len': 'lenses[2]', 'num_of_ray_hit': "" + str(lenses[2].geometry.collision), 'time': "" + str(frame),
-         "color": '' + str(lenses[2].geometry._color)},
-        {'len': 'lenses[3]', 'num_of_ray_hit': "" + str(lenses[3].geometry.collision), 'time': "" + str(frame),
-         "color": '' + str(lenses[3].geometry._color)},
-        {'len': 'lenses[4]', 'num_of_ray_hit': "" + str(lenses[4].geometry.collision), 'time': "" + str(frame),
-         "color": '' + str(lenses[4].geometry._color)},
-        {'len': 'len0', 'num_of_ray_hit': '' + str(lenses[5].geometry.collision), 'time': '' + str(frame),
-         "color": '' + str(lenses[5].geometry._color)}]
-
-    print("lenses[0]", lenses[0].geometry.collision)
-    print("lenses[1]", lenses[1].geometry.collision)
-    print("lenses[2]", lenses[2].geometry.collision)
-    print("lenses[3]", lenses[3].geometry.collision)
-    print("lenses[4]", lenses[4].geometry.collision)
-    print("lenses[5]", lenses[5].geometry.collision)
+        csv_data += [
+            {'len': 'lens' + str(index), 'num_of_ray_hit': "" + str(lens.geometry.collision), 'time': "" + str(frame),
+             "color": '' + str(lens.geometry._color)},
+        ]
+        print("lens"+str(index), lens.geometry.collision)
+        index = +1
     frame += 1
     viewer.remove(scene.emit(num_rays=1))
 
