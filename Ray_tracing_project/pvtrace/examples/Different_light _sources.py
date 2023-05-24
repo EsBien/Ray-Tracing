@@ -1,5 +1,4 @@
-
-import matplotlib.pyplot as plt
+import matplotlib as plt
 from pvtrace.optics_simulation.generate_simualtion import *
 
 array_of_wavelengh = []
@@ -43,17 +42,8 @@ rays = generate_rays(20, y_location_wavelengh)
 viewer = MeshcatRenderer(open_browser=True, transparency=False, opacity=0.5, wireframe=True)
 scene = Scene(world)
 viewer.render(scene)
-# material=Material(
-#             refractive_index=1.5,
-#             components=[
-#                 Luminophore(
-#                     emission=np.column_stack((_x, emission_spectrum)),
-#                     quantum_yield=1.0,
-#                     phase_function=isotropic,
-#                     coefficient=1.0
-# refractive_index=config.getfloat('DROP','refractive_index'),
-#                 ),
-droplet_data=generate_droplet_data(20,40)
+
+droplet_data = generate_droplet_data(20, 40)
 droplet_data.sort(key=lambda x: x.geometry._startTime, reverse=False)
 # for i in droplet_data:
 #     print(i.geometry._startTime)
@@ -87,28 +77,27 @@ while droplet_data:
     for lens in lenses:
         if lens.geometry.collision:
             lens.geometry._color = lens.geometry._color / lens.geometry.set_collision
-
         csv_data += [
-            {'len': 'lens' + str(index), 'num_of_ray_hit': "" + str(lens.geometry.collision), 'time': "" + str(frame),
+            {'len': 'lens' + str(index), 'num_of_ray_hit': "" + str(lens.geometry.collision),
+             'time': "" + str(frame),
              "color": '' + str(lens.geometry._color)},
         ]
-        print("lens"+str(index), lens.geometry.collision)
+        print("lens" + str(index), lens.geometry.collision)
         index = +1
+
     frame += 1
     viewer.remove(scene.emit(num_rays=1))
 
 df = pd.DataFrame(csv_data)
+
 df.to_csv("data1.csv")
 
-plt.plot(xx, y)
-plt.xlabel('Wavelength (nm)')
-plt.grid(linestyle='dotted')
 dist = Distribution(xx, y)
 dist.sample(np.random.uniform())
 light = Light(
     wavelength=lambda: dist.sample(np.random.uniform())
 )
-plt.show()
+
 while True:
     try:
         time.sleep(0.1)
