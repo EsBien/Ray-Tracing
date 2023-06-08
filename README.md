@@ -46,7 +46,7 @@ The scene consists of light rays, liquid drops, and lenses. The collisions betwe
 Additionally, data regarding the vulnerability of different wavelengths in the lenses is recorded in a CSV file.<br/>
 
 # Usage
-To use the project, follow these steps:<br/>
+To use the project, follow these steps: <br/>
 
 Set up the Python environment with the required dependencies (meshcat, numpy, pandas, and pvtrace,anytree, trimesh[easy]).<br/>
 Customize the parameters in the configuration file to define the desired scene.<br/>
