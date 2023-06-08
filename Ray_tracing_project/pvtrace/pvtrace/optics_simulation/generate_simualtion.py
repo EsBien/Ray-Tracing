@@ -31,7 +31,7 @@ def generate_lenses(num_lenses):
         lens = Node(
             name="sphere (glass)" + str(i + 1),
             geometry=Sphere(
-                radius=0.5,
+                radius=0.3,
                 material=Material(refractive_index=1.5),
                 isLen=True),
             parent=world, )
@@ -41,6 +41,7 @@ def generate_lenses(num_lenses):
 
 def generate_rays(n, y_location_wavelengh):
     rays = []
+    x_loc = 0.2
     for i in range(n):
         ray = Node(
             name="ray (555nm)" + str(i),
@@ -52,8 +53,10 @@ def generate_rays(n, y_location_wavelengh):
             ))
         y_location_wavelengh += config.getfloat('LED_ARRAY', 'gap_between_led')
         ray.translate(
-            (config.getfloat('LED', 'x_location'), y_location_wavelengh, config.getfloat('LED', 'x_location')))
+            (config.getfloat('LED', 'x_location')+x_loc, y_location_wavelengh, config.getfloat('LED', 'x_location')))
         rays.append(ray)
+        x_loc += 0.1
+        x_loc *= -1
     return rays
 
 
