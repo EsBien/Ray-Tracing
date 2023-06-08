@@ -2,7 +2,7 @@
 This project simulates drops falling into pipes using ray-tracing techniques. <br/>
 It is implemented in Python and is based on the pvtrace project, which has been reverse-engineered <br/>
 and customized to meet the requirements of this simulation. <br/>
-
+[Check out project images & videos](https://github.com/EsBien/Ray-Tracing/tree/main/Ray%20Tracing%20video-images) <br/>
 # System Requirements
 Python: The project is implemented in Python programming language. <br/>
 External Configuration File: Parameters can be accessed from an external configuration file, <br/>
